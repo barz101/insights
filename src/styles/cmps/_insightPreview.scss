@@ -1,0 +1,101 @@
+.insights {
+    .insight-card {
+        margin-bottom: 10px;
+        background-color: $clr2;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0px 2px $clr1;
+        flex-flow: row no-wrap;
+        @include for-mobile-layout {
+            flex-direction: column;
+        }
+        .insight-index {
+            padding-top: 10px;
+            background-color: $clr1;
+            min-width: 40px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            text-align: center;
+            color: $clr2;
+            font-size: rem(30px);
+            font-family: assitant-extra-bold;
+            margin-left: 15px;
+            @include for-mobile-layout {
+                font-size: rem(38px);
+                height: 8vh;
+                width: 100%;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+                border-bottom-right-radius: 0px;
+                text-align: start;
+                padding-right: 16px;
+                margin-left: 0;
+                order: 1;
+            }
+        }
+        .insight-content {
+            margin-top: 10px;
+            font-size: rem(21px);
+            @include for-mobile-layout {
+                padding-right: 16px;
+                padding-left: 20px;
+                order: 3;
+                margin-top: 0;
+                line-height: em(18px);
+            }
+            .edit-mode {
+                padding: 2px;
+                border: 1px solid $clr1;
+            }
+            .edit-actions {
+                flex-direction: row-reverse;
+                button {
+                    font-size: rem(13px);
+                    font-family: assitant-bold;
+                    border-radius: 15px;
+                    border: 2px solid $clr1;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    padding: 2px 15px;
+                    &.save-button {
+                        margin-right: 10px;
+                        color: $clr1;
+                    }
+                    &.cancel-button {
+                        background: $clr1;
+                        color: $clr2;
+                    }
+                }
+            }
+            .insight-stats {
+                margin-bottom: 7px;
+                margin-top: 2px;
+                font-size: rem(12.5px);
+                color: rgb(51, 51, 51);
+                // font-family: assitant-semi-bold;;
+            }
+        }
+        img {
+            &.more-icon {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        @include for-mobile-layout {
+            .WithStyles\(ForwardRef\(Button\)\)-root-1 {
+                height: 10px;
+            }
+            .more-button {
+                align-self: flex-end;
+                order: 2;
+            }
+            img {
+                &.more-icon {
+                    margin-top: 12px;
+                    width: 20px;
+                    height: 15px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

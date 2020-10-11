@@ -1,3 +1,5 @@
+import storageService from './storageService.js'
+
 var processDB =
 {
     _id: 1,
@@ -12,8 +14,8 @@ var processDB =
     },
     {
         _id: 2,
-        data: 
-        'היתה לה דלת עגולה דמוית צוהר, צבועה ירוק, ובדיוק במרכז ידית פליז צהובה ונוצצת. הדלת נפתחה אל פרוזדור דמוי מנהרה שצורתו כצינור: מנהרה נעימה מאוד ונטולת עשן, עם קריות מחופים ורצפה מרוצפת מכוסה שטיח, מצוידת בכיסאות ממורקים ובהמוני מתלים לכובעים ומעילים וההוביט היה מכניס אורחים.',
+        data:
+            'היתה לה דלת עגולה דמוית צוהר, צבועה ירוק, ובדיוק במרכז ידית פליז צהובה ונוצצת. הדלת נפתחה אל פרוזדור דמוי מנהרה שצורתו כצינור: מנהרה נעימה מאוד ונטולת עשן, עם קריות מחופים ורצפה מרוצפת מכוסה שטיח, מצוידת בכיסאות ממורקים ובהמוני מתלים לכובעים ומעילים וההוביט היה מכניס אורחים.',
         statistics: {
             publishedContributorsCount: 8,
             publishedContributionsPercent: 33,
@@ -37,15 +39,17 @@ var processDB =
     },
     {
         _id: 5,
-        data:'יהיה עליך להסתדר ללא מטפחת ובלי הרבה מאוד דברים נוספים, בילבו באגינס, לפני תום המסע. אתה נולדת בגבעות הקטנות ובנהרות הקטנים של הפלך, אולם הבית מאחוריך כעת והעולם לרגלייך.',
+        data: 'יהיה עליך להסתדר ללא מטפחת ובלי הרבה מאוד דברים נוספים, בילבו באגינס, לפני תום המסע. אתה נולדת בגבעות הקטנות ובנהרות הקטנים של הפלך, אולם הבית מאחוריך כעת והעולם לרגלייך.',
         statistics: {
             publishedContributorsCount: 11,
             publishedContributionsPercent: 40,
         }
     }
     ]
-
 }
+
+const STORAGE_KEY = 'process'
+var gProcess = null;
 
 export default {
     query,
@@ -55,26 +59,29 @@ export default {
 }
 
 function query() {
-    return Promise.resolve(processDB);
+    gProcess = storageService.load(STORAGE_KEY) || processDB;
+    console.log(gProcess);
+    return Promise.resolve(gProcess);
 }
 
 function get(id) {
-    const insight = processDB.insights.find(insight => insight._id === id)
+    const insight = gProcess.insights.find(insight => insight._id === id)
     console.log(insight);
     return Promise.resolve(insight)
 }
 
 function remove(id) {
-    const idx = processDB.insights.findIndex(insight => insight._id === id)
-    processDB.insights.splice(idx, 1)
+    const idx = gProcess.insights.findIndex(insight => insight._id === id)
+    gProcess.insights.splice(idx, 1)
+    storageService.store(STORAGE_KEY, gProcess)
     return Promise.resolve()
 }
 
 function save(insight) {
     if (insight._id) {
-        const idx = processDB.insights.findIndex(_insight => _insight._id === insight._id)
-        processDB.insights.splice(idx, 1, insight)
-        return Promise.resolve(processDB.insights[idx])
+        const idx = gProcess.insights.findIndex(_insight => _insight._id === insight._id)
+        gProcess.insights.splice(idx, 1, insight)
+        storageService.store(STORAGE_KEY, gProcess)
+        return Promise.resolve(gProcess.insights[idx])
     }
 }
-

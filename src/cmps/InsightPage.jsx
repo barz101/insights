@@ -7,7 +7,7 @@ export function InsightPage() {
   const { id } = useParams();
   const history = useHistory();
   const [currInsight, setInsight] = useState(null);
- 
+
   useEffect(() => {
     insightService.get(+id).then(insight => {
       setInsight(insight)
@@ -19,25 +19,23 @@ export function InsightPage() {
   }, [])
 
   const onPressBack = () => {
-   
-        history.push(``)
-    
-}
+    history.push(``)
+  }
 
   return (
     <div className="insight-page">
-      {currInsight && 
-      <div className="insight-content flex column align-center">
-      <h1>פרטים על התובנה:</h1>
-        <div className="insight-data">
-          {currInsight.data}
+      {currInsight &&
+        <div className="insight-content flex column align-center">
+          <h1>פרטים על התובנה:</h1>
+          <div className="insight-data">
+            {currInsight.data}
           </div>
-        <div className="insight-stats">{currInsight.statistics.publishedContributorsCount} משתתפים תומכים בתובנה זו ({currInsight.statistics.publishedContributionsPercent}% מהתשובות) </div>
-        <div>
-        <button onClick={onPressBack}>חזור לעמוד הראשי</button>
-        <ArrowBackIcon fontSize="small"></ArrowBackIcon>
-      </div>
-      </div>
+          <div className="insight-stats">{currInsight.statistics.publishedContributorsCount} משתתפים תומכים בתובנה זו ({currInsight.statistics.publishedContributionsPercent}% מהתשובות) </div>
+          <div>
+            <button onClick={onPressBack}>חזור לעמוד הראשי</button>
+            <ArrowBackIcon fontSize="small"></ArrowBackIcon>
+          </div>
+        </div>
       }
     </div>
   )

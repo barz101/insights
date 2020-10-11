@@ -29,8 +29,8 @@ export default class Home extends Component {
     }
     onEdit = (insight) => {
         insightService.save(insight).then(savedInsight => {
-                console.log('Insight succesfuly saved:', savedInsight);
-            })
+            console.log('Insight succesfuly saved:', savedInsight);
+        })
             .catch(err => {
                 console.log('error: ', err);
             })
