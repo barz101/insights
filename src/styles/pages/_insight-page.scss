@@ -1,0 +1,74 @@
+.insight-page {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    background-color: #2c8dbe;
+    color: $clr2;
+    border: 5px solid #1c6c94;
+    border-radius: 10px;
+    height: 500px;
+    // @include for-narrow-layout {
+
+    // }
+    .insight-content {
+        padding-top: 10px;
+        padding-left: 50px;
+        padding-right: 50px;
+        font-size: rem(24px);
+        word-spacing: 2px;
+        line-height: rem(32px);
+        .insight-data {
+            padding-top: 20px;
+        }
+        .insight-stats {
+            padding-top: 30px;
+            font-size: rem(20px);
+        }
+    }
+    button {
+        font-family: assitant-bold;
+        margin-top: 60px;
+        font-size: rem(22px);
+        border-radius: 10px;
+        vertical-align: baseline;
+    }
+    @include for-normal-layout {
+        width: 88vw;
+        height: 80vh;
+        line-height: rem(28px);
+        .insight-content {
+            padding-left: 20px;
+            padding-right: 20px;
+            .insight-stats {
+                padding-top: 0;
+            }
+            .insight-data {
+                padding-top: 0;
+            }
+        }
+        button {
+            margin-top: 40px;
+        }
+        // h1 {
+        //     font-size: rem(36px);
+        // }
+    }
+    @include for-mobile-layout {
+        height: 70vh;
+        .insight-content {
+            font-size: rem(20px);
+            .insight-stats {
+                padding-top: 10px;
+                font-size: rem(14px);
+            }
+        }
+        h1 {
+            font-size: rem(30px);
+        }
+        button {
+            margin-top: 20px;
+            font-size: rem(20px);
+        }
+    }
+}
